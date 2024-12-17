@@ -1,0 +1,52 @@
+@startuml
+
+package "Code Editor" {
+    class talFileExplorerWidget {
+        + onUpdateRoot(event)
+        + onSelectFile(event)
+        + onFileDeleted(event)
+        + onItemRenamed(event)
+    }
+
+    class talExecBarWidget {
+        + onStop()
+        + onRun()
+        + onConnect()
+        - selectedFile
+    }
+
+    class talFileEditorWidget {
+        + onChange(event)
+    }
+
+    class talProblemWidget {
+        + onAttachments(event, source)
+        + onProblemChanged(event)
+        + onServiceChanged(event)
+        + onProblemListChanged()
+    }
+
+    class talOutputWidget {
+        + onStdin(event)
+    }
+
+    class talTerminalWidget {
+        + onAttachments(event, source)
+        + onProblemChanged(event)
+    }
+
+    class talMonacoEditorWidget {
+        + onChange(event)
+    }
+
+    talFileExplorerWidget --> talFileEditorWidget : onSelectFile
+    talFileExplorerWidget --> talExecBarWidget : onSelectFile
+    talFileEditorWidget --> talMonacoEditorWidget : onChange
+    talExecBarWidget --> talTerminalWidget : onRun
+    talExecBarWidget --> talTerminalWidget : onConnect
+    talTerminalWidget --> talOutputWidget : onStdin
+    talProblemWidget --> talTerminalWidget : onProblemChanged
+    talProblemWidget --> talMonacoEditorWidget : onProblemChanged
+}
+
+@enduml

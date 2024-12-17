@@ -1,0 +1,29 @@
+@startuml
+
+package "Servizi" {
+    class CompilerService {
+        - projectManager: ProjectManagerService
+    }
+    class ProjectManagerService {
+        - pythonCompiler: PythonCompilerService
+    }
+    class ConnectionManagerService {
+        - api: ApiService
+    }
+    class ApiService
+    class ProblemManagerService {
+        - api: ApiService
+    }
+    class PythonCompilerService {
+        - fs: FsService
+    }
+    class FsService
+}
+
+CompilerService --> ProjectManagerService
+ConnectionManagerService --> ApiService
+ProblemManagerService --> ApiService
+ProjectManagerService --> PythonCompilerService
+PythonCompilerService --> FsService
+
+@enduml

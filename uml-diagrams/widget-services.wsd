@@ -1,0 +1,127 @@
+@startuml
+
+package "Servizi" {
+    class TutorialService
+    class ThemeService
+    class ApiService
+    class ProblemManagerService
+    class NotificationManagerService
+    class ProjectManagerService
+    class TerminalServices
+    class TerminalApiService
+    class CompilerService
+    class MessageService
+    class OutputService
+    class FsService
+    class ConfirmationService
+    class SocialAuthService
+    class GithubApiService
+    class ChangeDetectorService
+    class HotkeysService
+}
+
+package "Widget" {
+    class TutorialWidget {
+        + tutorialService: TutorialService
+    }
+    class TopbarWidget {
+        + themeService: ThemeService
+        + apiService: ApiService
+        + problemManagerService: ProblemManagerService
+        + notificationManagerService: NotificationManagerService
+        + projectManagerService: ProjectManagerService
+        + tutorialService: TutorialService
+    }
+    class TerminalWidget {
+        + terminalServices: TerminalServices
+        + terminalApiService: TerminalApiService
+        + compilerService: CompilerService
+        + tutorialService: TutorialService
+    }
+    class ProblemWidget {
+        + apiService: ApiService
+        + problemManagerService: ProblemManagerService
+        + projectManagerService: ProjectManagerService
+        + tutorialService: TutorialService
+        + messageService: MessageService
+    }
+    class OutputWidget {
+        + tutorialService: TutorialService
+    }
+    class MonacoEditorWidget {
+        + themeService: ThemeService
+        + tutorialService: TutorialService
+    }
+    class LogApiWidget {
+        + tutorialService: TutorialService
+    }
+    class FileExplorerWidget {
+        + fsService: FsService
+        + confirmationService: ConfirmationService
+        + projectManagerService: ProjectManagerService
+        + socialAuthService: SocialAuthService
+        + messageService: MessageService
+        + githubApiService: GithubApiService
+        + tutorialService: TutorialService
+    }
+    class FileEditorWidget {
+        + tutorialService: TutorialService
+        + themeService: ThemeService
+    }
+    class ExecBarWidget {
+        + tutorialService: TutorialService
+    }
+    class CodeEditor {
+        + fsService: FsService
+        + compilerService: CompilerService
+        + apiService: ApiService
+        + projectManagerService: ProjectManagerService
+        + changeDetectorService: ChangeDetectorService
+        + messageService: MessageService
+        + tutorialService: TutorialService
+        + elementRef: ElementRef
+        + hotkeysService: HotkeysService
+    }
+}
+
+TutorialWidget --> TutorialService
+TopbarWidget --> ThemeService
+TopbarWidget --> ApiService
+TopbarWidget --> ProblemManagerService
+TopbarWidget --> NotificationManagerService
+TopbarWidget --> ProjectManagerService
+TopbarWidget --> TutorialService
+TerminalWidget --> TerminalServices
+TerminalWidget --> TerminalApiService
+TerminalWidget --> CompilerService
+TerminalWidget --> TutorialService
+ProblemWidget --> ApiService
+ProblemWidget --> ProblemManagerService
+ProblemWidget --> ProjectManagerService
+ProblemWidget --> TutorialService
+ProblemWidget --> MessageService
+OutputWidget --> TutorialService
+MonacoEditorWidget --> ThemeService
+MonacoEditorWidget --> TutorialService
+LogApiWidget --> TutorialService
+FileExplorerWidget --> FsService
+FileExplorerWidget --> ConfirmationService
+FileExplorerWidget --> ProjectManagerService
+FileExplorerWidget --> SocialAuthService
+FileExplorerWidget --> MessageService
+FileExplorerWidget --> GithubApiService
+FileExplorerWidget --> TutorialService
+FileEditorWidget --> TutorialService
+FileEditorWidget --> ThemeService
+ExecBarWidget --> TutorialService
+CodeEditor --> FsService
+CodeEditor --> CompilerService
+CodeEditor --> ApiService
+CodeEditor --> ProjectManagerService
+CodeEditor --> ChangeDetectorService
+CodeEditor --> MessageService
+CodeEditor --> TutorialService
+CodeEditor --> ElementRef
+CodeEditor --> HotkeysService
+
+@enduml
